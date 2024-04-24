@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Video_15</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header th:replace="~{plantillas/plantilla :: encabezado}"></header>
+        <p>CRUD usando clase servicio</p>
+
+
+        <p>Spring Security Thymeleaf tutorial</p>
+        <div sec:authorize="hasRole('USER')">Text visible to user.</div>
+        <div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
+        <div sec:authorize="isAuthenticated()">Text visible only to authenticated users.</div>
+
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/anexar}" th:text="#{boton.anexar}"></a><!-- añadiendo el sec:authorize solo mostrará la etiqueta si es rol de admin -->
+        <div th:if="${individuos != null and !individuos.empty}">
+            <table border="2">
+                <tr>
+                    <th th:text="#{individuo.nombre}"></th>
+                    <th th:text="#{individuo.apellido}"></th>
+                    <th th:text="#{individuo.edad}">Edad</th>
+                    <th th:text="#{individuo.correo}">Correo</th>
+                    <th th:text="#{individuo.telefono}">Teléfono</th>
+                    <th th:text="#{boton.modificar}" sec:authorize="hasRole('ROLE_ADMIN')">Modificar</th>
+                    <th th:text="#{boton.borrarUrl}" sec:authorize="hasRole('ROLE_ADMIN')">Borrar por URL</th>
+                    <th th:text="#{boton.borrarQP}" sec:authorize="hasRole('ROLE_ADMIN')">Borrar por QP</th>
+                </tr>
+                <tr th:each="individuo : ${individuos}">
+                    <td th:text="${individuo.nombre}">Mostrar Nombre</td>
+                    <td th:text="${individuo.apellido}">Mostrar Apellido</td>
+                    <td th:text="${individuo.correo}">Mostrar Email</td>
+                    <td th:text="${individuo.edad}">Mostrar Edad</td>
+                    <td th:text="${individuo.telefono}">Mostrar Telefono</td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')"> <a th:href="@{/modificar/} + ${individuo.id}" th:text="#{boton.modificar}"/></td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a  th:href="@{/borrar/} + ${individuo.id}"
+                            th:text="#{boton.borrarUrl}"
+                            onclick="return confirm('¿Estás seguro de que quieres eliminar este registro?')">
+                        </a>
+                    </td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')" >
+                        <a  th:href="@{/borrar_queryparameter(id=${individuo.id})}"
+                            th:text="#{boton.borrarQP}"
+                            onclick="return confirm('¿Estás seguro de que quieres eliminar este registro?')">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${individuos == null or individuos.empty}" >
+            <p>[[#{lista.vacia}]]</p>
+        </div>
+        <footer th:replace="~{plantillas/plantilla :: piepagina}"></footer>
+    </body>
+</html>

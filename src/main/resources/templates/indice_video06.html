@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+       <h1>Video_06</h1>
+        <p>Mostrando variables en la vista: th:text="'Nombre: ' + ${individuo.getNombre}, etc</p>
+        
+        
+        <p th:text="'Nombre: ' + ${individuo.getNombre} ">muestra el nombre</p>
+        <p th:text="'Edad: ' + ${individuo.getEdad} ">muestra el nombre</p>
+    </body>
+</html>

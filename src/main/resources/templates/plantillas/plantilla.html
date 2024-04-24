@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:fragment="encabezado">
+            <h1 th:text="#{pagina.titulo}"></h1>
+        </header>
+        
+        <footer th:fragment="piepagina">
+            <div>
+                <a th:href="@{/(lang=es)}">es</a> / 
+                <a th:href="@{/(lang=en)}">en</a> -
+                <span>[[#{pagina.piedepagina}]] <a href="https://www.tallerdeapps.com" target="_blank">Taller de apps</a></span>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Cerrar sesión"></input>
+                </form>
+            </div>
+
+        </footer>
+    </body>
+</html>

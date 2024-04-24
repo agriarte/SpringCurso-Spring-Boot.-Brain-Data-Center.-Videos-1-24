@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Video_12</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Video_12</h1>
+        <p>Mostrar BBDD usando clase servicio</p>
+        
+
+        <div th:if="${individuos != null and !individuos.empty}">
+            <table border="2">
+                <tr>
+                    <th>Nombre</th><th>Apellido</th><th>Edad</th><th>Correo</th><th>Teléfono</th>
+                </tr>
+                <tr th:each="individuo : ${individuos}">
+                    <td th:text="${individuo.nombre}">Mostrar Nombre</td>
+                    <td th:text="${individuo.apellido}">Mostrar Apellido</td>
+                    <td th:text="${individuo.correo}">Mostrar Email</td>
+                    <td th:text="${individuo.edad}">Mostrar Edad</td>
+                    <td th:text="${individuo.telefono}">Mostrar Telefono</td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${individuos == null or individuos.empty}">
+            La lista no tiene datos
+        </div>
+    </body>
+</html>

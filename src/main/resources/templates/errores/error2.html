@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Error</title>
+    </head>
+    <body>
+        <h1>Pagina de Errores</h1>
+        <p>Aqui se llega si se capturan excepciones como no poder abrir la base de datos, intentar acceder a un lugar no autorizado, etc</p>
+        <p th:text="${errorMessage}"></p>
+    </body>
+</html>
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" 
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head>
+        <title>Inicio curso Spring de Brain Data Center</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Curso Spring</h1>
+        <div>Mostrar usuario con Thymeleaf según <a href="https://www.baeldung.com/get-user-in-spring-security#get-the-user-in-thymeleaf" target="_blank">Baeldung.com</a>. 
+            Requiere 2 dependencias(ver pom). Autenticado como:</div>
+        <div sec:authorize="isAuthenticated()">
+            Usuario: <span sec:authentication="name"></span><br>
+            Role: <span sec:authentication="principal.authorities"></span> 
+        </div>
+        <h5>Indice de videos:</h5>
+        <ul>
+            <li><a href="/video01">Video 01</a></li>
+            <li><a href="/video06">Video 06</a></li>
+            <li><a href="/video08">Video 08</a></li>
+            <li><a href="/video12">Video 12</a></li>
+            <li><a href="/video14">Video 14</a></li>
+            <li><a href="/video15">Video 15. CRUD</a></li>
+        </ul>
+        <footer th:replace="plantillas/plantilla :: piepagina"></footer>
+    </body>
+</html>
